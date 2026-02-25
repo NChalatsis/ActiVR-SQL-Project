@@ -1,12 +1,13 @@
+-- Created by GitHub Copilot in SSMS - review carefully before executing
 SELECT
     user_id,
     COALESCE(
         age,
-        CAST(ROUND((SELECT AVG(age) FROM users WHERE age IS NOT NULL)) AS INT)
+        CAST(ROUND((SELECT AVG(CAST(age AS FLOAT)) FROM dbo.users WHERE age IS NOT NULL), 0) AS INT)
     ) AS age,
     COALESCE(
         registration_date,
-        '2024-01-01-00-00-00-000'
+        CAST('2024-01-01' AS date)
     ) AS registration_date,
     COALESCE(email, 'Unknown') AS email,
     CASE
@@ -15,4 +16,4 @@ SELECT
             THEN LOWER(workout_frequency)
         ELSE 'flexible'
     END AS workout_frequency
-FROM users;
+FROM dbo.users;
