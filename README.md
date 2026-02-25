@@ -1,79 +1,153 @@
-# ActiVR SQL Project
+# ActiVR SQL Project  
+A complete, end‑to‑end SQL data engineering exercise built on SQL Server.
 
-This project contains SQL solutions for the ActiVR Data Engineer practical exam.
+## 📌 Project Overview
+This project simulates a small analytics environment for **ActiVR**, a fictional VR fitness company.  
+The goal is to recreate a realistic data engineering workflow using SQL Server, including:
 
-## Files
+- Designing a relational database schema  
+- Creating tables and enforcing relationships  
+- Loading sample data  
+- Cleaning and standardizing inconsistent records  
+- Enriching event data using joins  
+- Writing analytical SQL queries  
+- Structuring a fully reproducible GitHub project  
 
-- **01_task1_clean_data.sql**  
-  Cleans and formats the `users` table according to business rules.
-
-- **02_task2_events_with_game_id.sql**  
-  Fills missing `game_id` values in the `events` table for events before 2021.
-
-- **03_task3_event_biking.sql**  
-  Returns users who participated in biking-related events.
-
-- **04_task4_users_game.sql**  
-  Aggregates unique users per game type and game ID.
-
-## How to run
-
-1. Open SQL Server Management Studio (SSMS).
-2. Connect to your SQL Server instance.
-3. Open each `.sql` file and run it.
-
-
-## Project Tasks Overview
-
-This project consists of four SQL tasks that demonstrate core data engineering skills, including data cleaning, data enrichment, table joins, and analytical aggregation.  
-Below is a clear description of each task: what the requirement was and how I approached the solution.
+The project includes all scripts required to rebuild the database from scratch.
 
 ---
 
-### **Task 1 — Data Cleaning & Standardization**
-**Requirement:**  
-Return a cleaned version of the `users` table without modifying the underlying database. Missing values had to be replaced, data types corrected, and the `workout_frequency` column standardized.
-
-**What I did:**  
-- Replaced NULL ages with the average age of all users.  
-- Replaced NULL registration dates with `2024-01-01`.  
-- Replaced NULL emails with `'Unknown'`.  
-- Normalized `workout_frequency` to lowercase and validated it against the allowed values (`minimal`, `flexible`, `regular`, `maximal`).  
-- Replaced invalid or missing workout frequencies with `'flexible'`.  
-The result is a fully cleaned dataset ready for marketing analysis.
+## 🧰 Technologies Used
+- **SQL Server**
+- **SQL Server Management Studio (SSMS)**
+- **SQL**
+- **Git & GitHub**
 
 ---
 
-### **Task 2 — Data Enrichment for Missing Foreign Keys**
-**Requirement:**  
-The `events` table was missing `game_id` values for events before 2021. These needed to be filled in using information from the `games` table, without modifying the original data.
+## 🏗️ Database Schema
 
-**What I did:**  
-- Performed a LEFT JOIN between `events` and `games` to access the `game_id` of all `running` games.  
-- For events before 2021, replaced missing `game_id` values with the corresponding `running` game ID.  
-- Preserved existing `game_id` values for all other events.  
-This produced a complete events dataset where every event has a valid game ID.
+The ActiVR database consists of four tables:
+
+- **users** – demographic and registration data  
+- **games** – available game types  
+- **devices** – VR devices and versions  
+- **events** – user activity logs linked to games and devices  
+
+A full ERD diagram is included in: docs/images/schema.png
+
+## 📂 Project Structure
+
+ActiVR_SQL_Project/
+│
+├── database/
+│     ├── 00_create_database.sql
+│     ├── 01_create_tables.sql
+│     └── 02_insert_data.sql
+│
+├── docs/
+│     ├── instructions.md
+│     └── images/
+│           ├── schema.png
+|           └── dbSchema0.png
+│
+├── 01_task1_clean_data.sql
+├── 02_task2_events_with_game_id.sql
+├── 03_task3_event_biking.sql
+├── 04_task4_users_game.sql
+└── README.md
+
+
+## 🚀 How to Run This Project
+
+Follow these steps to recreate the database and run the analytical tasks.
+
+### 1. Requirements  
+- SQL Server Management Studio (SSMS)
+---
+
+### 2. Create the Database
+Run:  database/00_create_database.sql
+This creates the `ActiVR` database.
+---
+
+### 3. Create All Tables
+Run: database/01_create_tables.sql
+This script creates the four tables and all foreign key relationships.
+---
+
+### 4. Insert Sample Data
+Run:database/02_insert_data.sql
+This loads sample data designed to reproduce all task scenarios.
+---
+
+### 5. Run the Task Queries
+Each task is implemented in a separate SQL file:
+
+- `01_task1_clean_data.sql`  
+- `02_task2_events_with_game_id.sql`  
+- `03_task3_event_biking.sql`  
+- `04_task4_users_game.sql`  
+
+Before running each script, ensure the active database in SSMS is: ActiVR
 
 ---
 
-### **Task 3 — Filtering Events by Game Type**
-**Requirement:**  
-Identify users who participated in events related to `biking` games and return their `user_id` and `event_time`.
+## 📝 Task Descriptions
 
-**What I did:**  
-- Joined `events` with `games` using `game_id`.  
-- Filtered the results to include only rows where `game_type = 'biking'`.  
-The output is a list of users and timestamps for all biking-related events.
+### **Task 1 — Data Cleaning**
+Standardize inconsistent values, handle NULLs, and prepare the `users` table for analysis.
+
+### **Task 2 — Enrich Events with Game IDs**
+Assign missing `game_id` values for events before 2021 based on the most common game type per user.
+
+### **Task 3 — Filter Biking Events**
+Return all events where the user played a biking game.
+
+### **Task 4 — Join Users with Games**
+Combine user information with game activity, excluding NULL game types.
 
 ---
 
-### **Task 4 — Aggregation of Unique Users per Game**
-**Requirement:**  
-Calculate the number of unique users who participated in events for each combination of `game_type` and `game_id`. Entries with missing game types had to be excluded.
+## 📊 About the Dataset
+The dataset is custom‑built for this project.  
+It includes:
 
-**What I did:**  
-- Joined `events` and `games` on `game_id`.  
-- Filtered out rows where `game_type` was NULL.  
-- Counted distinct `user_id` values grouped by both `game_type` and `game_id`.  
-The result is an aggregated table showing user engagement per game, useful for reporting and marketing insights.
+- Missing values  
+- Invalid values  
+- NULL foreign keys  
+- Multiple game types  
+- Events across multiple years  
 
+This ensures realistic data cleaning and enrichment scenarios.
+
+---
+
+## 🔮 Future Improvements
+Potential enhancements:
+
+- Add more realistic and larger sample datasets  
+- Create SQL views for analytics  
+- Implement stored procedures for data cleaning  
+- Add constraints and validation rules  
+- Build a Power BI dashboard  
+- Add unit tests using tSQLt  
+
+---
+
+## 🎓 Key Learnings
+Through this project I practiced:
+
+- Designing and documenting a reproducible SQL environment  
+- Cleaning and standardizing inconsistent data  
+- Working with foreign keys and relational integrity  
+- Writing analytical SQL queries  
+- Structuring a professional GitHub repository  
+
+---
+## 📬 Contact
+If you want to discuss SQL, data engineering, or similar projects, feel free to connect with me on LinkedIn.
+
+Nikolaos Chalatsis
+Nik_chal@live.com
+https://www.linkedin.com/in/nchalatsis/
