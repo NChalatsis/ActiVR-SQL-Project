@@ -1,0 +1,22 @@
+# ActiVR SQL Exam — Instructions Summary
+
+This document summarizes the tasks from the ActiVR Data Engineering practical exam.
+
+## Task 1 — Clean the `users` table
+- Replace missing ages with the average age.
+- Replace missing registration dates with `2024-01-01`.
+- Replace missing emails with `'Unknown'`.
+- Normalize workout_frequency to lowercase and validate allowed values.
+
+## Task 2 — Complete missing game_id values in `events`
+- Events before 2021 have missing game_id.
+- All pre-2021 events belong to running games.
+- Use the game_id of running games to fill missing values.
+
+## Task 3 — Retrieve biking-related events
+- Return user_id and event_time for events linked to biking games.
+
+## Task 4 — Count unique users per game
+- Join events and games.
+- Group by game_type and game_id.
+- Count distinct users.
