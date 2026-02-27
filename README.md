@@ -1,3 +1,4 @@
+```text
 # ActiVR SQL Project  
 A complete, end‑to‑end SQL data engineering exercise built on SQL Server.
 
@@ -56,7 +57,6 @@ ActiVR_SQL_Project/
 ├── 03_task3_event_biking.sql
 ├── 04_task4_users_game.sql
 └── README.md
-
 
 ## 🚀 How to Run This Project
 
