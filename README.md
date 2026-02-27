@@ -149,11 +149,11 @@ Through this project I practiced:
 If you want to discuss SQL, data engineering, or similar projects, feel free to connect with me on LinkedIn.
 
 ---
-
+```
 ## 👤 Author
-**Nikolaos Chalatsis — Junior Data Engineer**  
-📍 Athens, Greece  
-🔗 LinkedIn: https://www.linkedin.com/in/nchalatsis/ 
-🔗 GitHub: https://github.com/NChalatsis
+**Nikolaos Chalatsis — Junior Data Engineer**  <br> <br>
+📍 Athens, Greece  <br>
+🔗 LinkedIn: https://www.linkedin.com/in/nchalatsis/ <br> 
+🔗 GitHub: https://github.com/NChalatsis <br> <br>
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
