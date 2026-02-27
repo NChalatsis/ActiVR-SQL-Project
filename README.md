@@ -1,4 +1,3 @@
-```text
 # ActiVR SQL Project  
 A complete, end‑to‑end SQL data engineering exercise built on SQL Server.
 
@@ -38,6 +37,7 @@ The ActiVR database consists of four tables:
 A full ERD diagram is included in: docs/images/schema.png
 
 ## 📂 Project Structure
+```text
 
 ActiVR_SQL_Project/
 │
@@ -57,7 +57,7 @@ ActiVR_SQL_Project/
 ├── 03_task3_event_biking.sql
 ├── 04_task4_users_game.sql
 └── README.md
-
+```
 ## 🚀 How to Run This Project
 
 Follow these steps to recreate the database and run the analytical tasks.
